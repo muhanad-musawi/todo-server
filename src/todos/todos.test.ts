@@ -5,7 +5,7 @@ test("if todo.json file is created", () => {
     // given / gegeben
     // es gibt noch keine todos.json
     // testen obs da ist / bzw. löschen
-    
+
     // when / wenn 
     // ich ein Todo Speicher
     saveTodo("Hallo Welt")
@@ -16,4 +16,10 @@ test("if todo.json file is created", () => {
     expect(exists).toBeTruthy()
 })
 
-// test()
+// test("speichert valides json")
+// test("")
+
+// --- abhakt
+
+
+// --- anzeigt

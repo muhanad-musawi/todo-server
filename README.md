@@ -5,7 +5,7 @@
 Eine App, die Todos:
 - abspeichert
 - abhakt
-- anzeigt
+- lesen
 
 Zum speichern wird eine json Datei im System abgelegt.
 Für jedes Todo speichern wir titel und status.
