@@ -1,3 +1,14 @@
 # Todo-Server
-# Todo-Server
-# todo-server
+
+### Aufgabe
+
+Eine App, die Todos:
+- abspeichert
+- abhakt
+- anzeigt
+
+Zum speichern wird eine json Datei im System abgelegt.
+Für jedes Todo speichern wir titel und status.
+
+---
+Wir erstellen einen Server mit den 3 Endpunkten.
