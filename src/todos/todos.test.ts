@@ -76,7 +76,7 @@ test("doppelt eingetragen", () => {
 
 // --- abhakt
 // neu hinzugefügt
-test(" Text get all check Todos", () => {
+test(" filter all check Todos", () => {
     // given / gegeben
     const list = [
        {title: "Test", status: true}, 
@@ -90,6 +90,8 @@ test(" Text get all check Todos", () => {
     expect(todos.length).toBe(2);
     expect(todos[0].title).toBe("Test");
     expect(todos[1].title).toBe("Test3");
+    expect(todos[0].status).toBe(true);
+    expect(todos[1].status).toBe(true);
 })
 
 
