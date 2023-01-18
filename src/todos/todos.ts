@@ -12,6 +12,7 @@ export function getTodos() : Array<{title: string, status: boolean}> {
     return todos
 }
 
-export function saveCheck(title: string, check: boolean) {
-    fs.writeFileSync("./todos.json", title + check)
+export function filterCheckTodos(data: Array<{title: string, status: boolean}>) {
+    const checkTodos = data.filter((todo) => todo.status === true)
+    return checkTodos
 }

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { toUnicode } from 'punycode';
-import { saveTodo, getTodos} from './todos';
+import { saveTodo, getTodos, filterCheckTodos} from './todos';
 beforeEach(() => { 
     const exists = fs.existsSync('./todos.json')
     if (exists) {
@@ -41,8 +41,8 @@ test("speichert ein Todo ", () => {
 // neu hinzugefügt
 test("speichert den status false", () => {
     saveTodo("Hallo Welt")
-    const content = fs.readFileSync('./todos.json', 'utf-8' )
-    expect(content).toContain("false")
+    const todo = getTodos();
+    expect(todo[0].status).toBe(false);
 })
 
 
@@ -64,33 +64,34 @@ test("Schreib ein Todo in die json Datei und lese es wieder raus", () => {
 })
 
     
-/*
+// neu hinzugefügt
 test("doppelt eingetragen", () => { 
     // given / gegeben
-    const content = fs.readFileSync('./todos.json')
+    saveTodo("Test")
+    const content = fs.readFileSync('./todos.json' , 'utf-8' )
  
-    expect(content).not.toContain("Hallo Welt")
-    expect(new Set(content)).not.toContain("Hallo Welt");
-   // expect(content).not.toHaveReturnedWith("Hallo Welt");
+    //expect(content).toContain("Test");
+    expect(new Set(content)).not.toContain("Test");
 })
 
 // --- abhakt
-test(" ToDo check exists", () => {
+// neu hinzugefügt
+test(" Text get all check Todos", () => {
     // given / gegeben
-    saveCheck("Hallo Welt", true)
+    const list = [
+       {title: "Test", status: true}, 
+       {title: "Test2", status: false}, 
+       {title: "Test3", status: true}, 
+       {title: "Test4", status: false}
+    ]
 
+    const todos = filterCheckTodos(list);
     // then / dann
-    const exists = fs.existsSync('./todos.json')
-    expect(exists).toBeTruthy()
+    expect(todos.length).toBe(2);
+    expect(todos[0].title).toBe("Test");
+    expect(todos[1].title).toBe("Test3");
 })
 
-test("check is true", () => {
-    // given / gegeben
-    // when / wenn 
-    // then / dann
-    const content = fs.readFileSync('./todos.json', 'utf-8' )
-    expect(content).toContain("true")
-})
-*/
+
 // --- anzeigt
 
