@@ -1,6 +1,5 @@
 import fs from 'fs';
-import { toUnicode } from 'punycode';
-import { saveTodo, getTodos, filterCheckTodos} from './todos';
+import { saveTodo, getTodos, filterCheckTodos, filterFavouriteTodos} from './todos';
 beforeEach(() => { 
     const exists = fs.existsSync('./todos.json')
     if (exists) {
@@ -94,6 +93,23 @@ test(" filter all check Todos", () => {
     expect(todos[1].status).toBe(true);
 })
 
+test("filter all favourite Todos", () => { 
+    // given / gegeben 
+   const list = [
+     {title: "Test", status: false, favouriteStatus: true},
+     {title: "Test2", status: true, favouriteStatus: false},
+     {title: "Test3", status: false, favouriteStatus: true},
+     {title: "Test4", status: true, favouriteStatus: false}
+    ]
+   
+    const todos = filterFavouriteTodos(list);
+    // then / dann
+    expect(todos.length).toBe(2);
+    expect(todos[0].title).toBe("Test");
+    expect(todos[1].title).toBe("Test3");
+    expect(todos[0].favouriteStatus).toBe(true);
+    expect(todos[1].favouriteStatus).toBe(true);
+})
 
 // --- anzeigt
 

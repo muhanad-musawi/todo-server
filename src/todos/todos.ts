@@ -16,3 +16,8 @@ export function filterCheckTodos(data: Array<{title: string, status: boolean}>) 
     const checkTodos = data.filter((todo) => todo.status === true)
     return checkTodos
 }
+
+export function filterFavouriteTodos(data: Array<{title: string, status: boolean, favouriteStatus: boolean}>) {
+    const favouriteTodos = data.filter((todo) => todo.favouriteStatus === true)
+    return favouriteTodos
+}
