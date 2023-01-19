@@ -7,13 +7,16 @@ interface Todo {
 }
 
 export function saveTodo(title: string) {   
+    if (!fs.existsSync("./todos.json")) {
+        fs.writeFileSync("./todos.json", "[]")
+    }
     const todos: Array<Todo>= getTodos()
     const todo: Todo = {title, status: false, favouriteStatus: false}
-    const checkTodo = todos.find((todo) => todo.title === title) 
-    if (checkTodo) { 
-        return 
+    const checkTodo = todos.find((todo) => todo.title === title)
+    if (checkTodo) {
+        return
     }
-     todos.push(todo)
+    todos.push(todo)
     fs.writeFileSync("./todos.json", JSON.stringify(todos))
 }
 
