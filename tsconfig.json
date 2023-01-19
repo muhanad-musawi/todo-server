@@ -1,12 +1,21 @@
-{
+{   "extends": "ts-node/node16/tsconfig.json",
     "compilerOptions": {                        
-      "target": "es6",                               
-      "module": "commonjs",  
+      "target": "ES2015",                               
+      "module": "ESNext",  
       "outDir": "./dist",                             
-      "rootDir": "./src",                             
-      "strict": true,
-      "moduleResolution": "node",    
-      "esModuleInterop": true,                       
+      "rootDir": "./src",
+      "moduleResolution": "Node",    
+      "esModuleInterop": true,
+      "lib": ["ES2015"],          
+    },
+    "ts-node": {
+      "transpileOnly": true,
+      "files": true,
+      // Tell ts-node CLI to install the --loader automatically, explained below
+      "esm": true,
+      "compilerOptions": {
+        "module": "ESNext"
+      }
     },
     "exclude":[    
       "./node_modules"
