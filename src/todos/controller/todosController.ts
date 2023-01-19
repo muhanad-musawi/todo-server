@@ -3,7 +3,7 @@ import {getTodos, saveTodo, filterCheckTodos, filterFavouriteTodos } from '../to
 
 export function saveTodos(req: Request, res: Response) { 
     const {title} = req.body; 
-    saveTodo (title); 
+    saveTodo(title); 
     res.status(200).send("Todo saved");
 }
 
@@ -23,17 +23,3 @@ export function getFavouriteTodos(req: Request, res: Response) {
     const favouriteTodos = filterFavouriteTodos(todos);
     res.status(200).send(favouriteTodos);
 }
-
-/*
-export function getTodos(req: any ,res: any ) {
-  
-  Todos.find({}, (err: any ,todos: any )=>{
-    console.log("Hallo hier bin ich");
-    if(err){
-      res.status(401).send(err);
-    } else {
-      res.status(200).send(todos)
-    }
-  }) 
-} 
-*/

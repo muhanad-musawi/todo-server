@@ -44,9 +44,7 @@ test("speichert den status false", () => {
     expect(todo[0].status).toBe(false);
 })
 
-
 // --- Lesen
-
 test("Liest die json datei und gibt ein Array zurück", () => {
     saveTodo("test")
     const todos = getTodos();

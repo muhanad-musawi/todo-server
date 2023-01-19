@@ -8,7 +8,6 @@ app.get('/', (reg: any, res: any ) =>
 
 app.use('/', todos);
 
-
 const port = process.env.PORT || 8080;
 
-app.listen(port, () => console.log(`app listening on http://localhost: ${port}` ));
+app.listen(port, () => console.log(`app listening on http://localhost:${port}` ));
