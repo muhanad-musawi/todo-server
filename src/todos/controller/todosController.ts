@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import {getTodos, saveTodo, filterCheckTodos, filterFavouriteTodos } from '../todos';
 
 export function saveTodos(req: Request, res: Response) { 
-    const {title} = req.body; 
+    const {title} = req.body;
     saveTodo(title); 
     res.status(200).send("Todo saved");
 }

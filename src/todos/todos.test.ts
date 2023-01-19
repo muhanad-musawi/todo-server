@@ -23,7 +23,7 @@ test("if todo.json file is created", () => {
 
 })
 
- test("speichert valides json", () => {
+test("speichert valides json", () => {
     saveTodo("Hallo Welt")
    
     const content = fs.readFileSync('./todos.json', 'utf-8' )
@@ -62,13 +62,20 @@ test("Schreib ein Todo in die json Datei und lese es wieder raus", () => {
 
     
 // neu hinzugefügt
-test("doppelt eingetragen", () => { 
+test("kann nicht doppelt eingetragen", () => { 
     // given / gegeben
     saveTodo("Test")
-    const content = fs.readFileSync('./todos.json' , 'utf-8' )
- 
-    //expect(content).toContain("Test");
-    expect(new Set(content)).not.toContain("Test");
+    saveTodo("Test")
+    const todos = getTodos(); 
+    expect(todos.length).toBe(1);
+})
+
+test("ich kann zwei todos eintragen", () => { 
+    // given / gegeben
+    saveTodo("Test")
+    saveTodo("Test2")
+    const todos = getTodos(); 
+    expect(todos.length).toBe(2);
 })
 
 // --- abhakt

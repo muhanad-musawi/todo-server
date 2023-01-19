@@ -8,7 +8,7 @@ interface Todo {
 
 export function saveTodo(title: string) {
     const todos: Array<Todo> = [{title, status: false, favouriteStatus: false}]
-    fs.writeFileSync("./todos.json", JSON.stringify(todos) ) 
+    fs.writeFileSync("./todos.json", JSON.stringify(todos)) 
 }
 
 export function getTodos() : Array<Todo> { 
