@@ -6,13 +6,18 @@ interface Todo {
     favouriteStatus?: boolean;
 }
 
-export function saveTodo(title: string) {
-    const todos: Array<Todo> = [{title, status: false, favouriteStatus: false}]
-    fs.writeFileSync("./todos.json", JSON.stringify(todos)) 
+export function saveTodo(title: string) {   
+    const todos: Array<Todo>= getTodos()
+    const todo: Todo = {title, status: false, favouriteStatus: false}
+    const checkTodo = todos.find((todo) => todo.title === title) 
+    if (checkTodo) { 
+        return 
+    }
+     todos.push(todo)
+    fs.writeFileSync("./todos.json", JSON.stringify(todos))
 }
 
 export function getTodos() : Array<Todo> { 
-    
     const fileContent = fs.readFileSync("./todos.json", "utf-8")
     const todos = JSON.parse(fileContent)
     return todos
