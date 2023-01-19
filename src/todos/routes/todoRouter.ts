@@ -4,7 +4,7 @@ import {
     getTodos,
     filterCheckTodos,
     filterFavouriteTodos,
-} from '../controller/todos.controller';
+} from '../todos';
 
 const router = Router();
 

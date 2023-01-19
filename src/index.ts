@@ -1,5 +1,5 @@
 import express from "express";
-import todos from "./routes/todo.router";
+import todos from "./todos/routes/todoRouter";
 const app = express();
 
 app.get('/', (reg: any, res: any ) =>

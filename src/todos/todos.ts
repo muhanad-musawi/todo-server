@@ -1,23 +1,29 @@
 import fs from 'fs';
 
+interface Todo { 
+    title: string; 
+    status: boolean;
+    favouriteStatus?: boolean;
+}
+
 export function saveTodo(title: string) {
-    const todos = [{title, status: false}]
+    const todos: Array<Todo> = [{title, status: false, favouriteStatus: false}]
     fs.writeFileSync("./todos.json", JSON.stringify(todos) ) 
 }
 
-export function getTodos() : Array<{title: string, status: boolean}> { 
+export function getTodos() : Array<Todo> { 
     
     const fileContent = fs.readFileSync("./todos.json", "utf-8")
     const todos = JSON.parse(fileContent)
     return todos
 }
 
-export function filterCheckTodos(data: Array<{title: string, status: boolean}>) {
+export function filterCheckTodos(data: Array<Todo>) {
     const checkTodos = data.filter((todo) => todo.status === true)
     return checkTodos
 }
 
-export function filterFavouriteTodos(data: Array<{title: string, status: boolean, favouriteStatus: boolean}>) {
+export function filterFavouriteTodos(data: Array<Todo>) {
     const favouriteTodos = data.filter((todo) => todo.favouriteStatus === true)
     return favouriteTodos
 }

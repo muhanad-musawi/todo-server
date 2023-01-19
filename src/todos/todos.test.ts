@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { saveTodo, getTodos, filterCheckTodos, filterFavouriteTodos} from './todos.controller';
+import { saveTodo, getTodos, filterCheckTodos, filterFavouriteTodos} from './todos';
 beforeEach(() => { 
     const exists = fs.existsSync('./todos.json')
     if (exists) {
