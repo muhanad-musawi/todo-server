@@ -8,62 +8,43 @@ beforeEach(() => {
 })
 
 test("if todo.json file is created", () => {
-    // given / gegeben
-    // es gibt noch keine todos.json
-    // testen obs da ist / bzw. löschen
-    
-    // when / wenn 
-    // ich ein Todo Speicher
     saveTodo("Hallo Welt")
-
-    // then / dann
-    // muss eine json datei existieren
     const exists = fs.existsSync('./todos.json')
     expect(exists).toBeTruthy()
-
 })
 
 test("speichert valides json", () => {
     saveTodo("Hallo Welt")
-   
     const content = fs.readFileSync('./todos.json', 'utf-8' )
     expect(() => JSON.parse(content)).not.toThrow()
 })
 
-// neu hinzugefügt
 test("speichert ein Todo ", () => {
     saveTodo("Hallo Welt")
     const content = fs.readFileSync('./todos.json', 'utf-8' )
     expect(content).toContain("Hallo Welt")
 })
 
-// neu hinzugefügt
 test("speichert den status false", () => {
     saveTodo("Hallo Welt")
     const todo = getTodos();
     expect(todo[0].status).toBe(false);
 })
 
-// --- Lesen
 test("Liest die json datei und gibt ein Array zurück", () => {
     saveTodo("test")
     const todos = getTodos();
-    
     expect(Array.isArray(todos)).toBe(true);
 })
 
 test("Schreib ein Todo in die json Datei und lese es wieder raus", () => {
     saveTodo("Test")
     const todos = getTodos(); 
-    
     expect(todos.length).toBe(1);
     expect(todos[0].title).toBe("Test");
 })
-
-    
-// neu hinzugefügt
+   
 test("kann nicht doppelt eingetragen", () => { 
-    // given / gegeben
     saveTodo("Test")
     saveTodo("Test")
     const todos = getTodos(); 
@@ -71,17 +52,13 @@ test("kann nicht doppelt eingetragen", () => {
 })
 
 test("ich kann zwei todos eintragen", () => { 
-    // given / gegeben
     saveTodo("Test")
     saveTodo("Test2")
     const todos = getTodos(); 
     expect(todos.length).toBe(2);
 })
 
-// --- abhakt
-// neu hinzugefügt
 test(" filter all check Todos", () => {
-    // given / gegeben
     const list = [
        {title: "Test", status: true}, 
        {title: "Test2", status: false}, 
@@ -90,7 +67,6 @@ test(" filter all check Todos", () => {
     ]
 
     const todos = filterCheckTodos(list);
-    // then / dann
     expect(todos.length).toBe(2);
     expect(todos[0].title).toBe("Test");
     expect(todos[1].title).toBe("Test3");
@@ -98,8 +74,7 @@ test(" filter all check Todos", () => {
     expect(todos[1].status).toBe(true);
 })
 
-test("filter all favourite Todos", () => { 
-    // given / gegeben 
+test("filter all favourite Todos", () => {
    const list = [
      {title: "Test", status: false, favouriteStatus: true},
      {title: "Test2", status: true, favouriteStatus: false},
@@ -108,7 +83,6 @@ test("filter all favourite Todos", () => {
     ]
    
     const todos = filterFavouriteTodos(list);
-    // then / dann
     expect(todos.length).toBe(2);
     expect(todos[0].title).toBe("Test");
     expect(todos[1].title).toBe("Test3");
@@ -116,5 +90,4 @@ test("filter all favourite Todos", () => {
     expect(todos[1].favouriteStatus).toBe(true);
 })
 
-// --- anzeigt
 

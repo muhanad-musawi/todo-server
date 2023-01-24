@@ -1,0 +1,4 @@
+CREATE TABLE user_profile (
+user_id VARCHAR(64) PRIMARY KEY,
+DELL P21)
+
